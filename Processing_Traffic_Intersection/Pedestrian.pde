@@ -1,6 +1,10 @@
 class Pedestrian {
+  // declaration
+  int direction;
+
   // init
-  Pedestrian() {
-  
+  Pedestrian(int _direction) {
+    direction = _direction;
   }
 }
+
