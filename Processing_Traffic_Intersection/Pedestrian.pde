@@ -1,0 +1,6 @@
+class Pedestrian {
+  // init
+  Pedestrian() {
+  
+  }
+}

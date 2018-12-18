@@ -1,0 +1,8 @@
+class Vehicle {
+  // init
+  Vehicle() {
+  
+  }
+  
+  
+}

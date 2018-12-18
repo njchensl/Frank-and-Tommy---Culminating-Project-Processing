@@ -1,0 +1,6 @@
+class TrafficLight {
+  // init
+  TrafficLight() {
+  
+  }
+}
