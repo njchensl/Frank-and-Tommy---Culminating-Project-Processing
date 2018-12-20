@@ -3,6 +3,16 @@ class TrafficLight {
   int direction;
   PVector pos;
   int status = 0;
+  int countdown;
+  
+  /**
+  Note for direction:
+  0 for up
+  90 for right
+  180 for down
+  270 for left
+  **/
+  
   
   /**
   note:
