@@ -2,7 +2,7 @@ class Vehicle {
   // declaration
   int direction;
   PVector pos;
-  float vel = 0;
+  float vel = 0.4;
 
   // init
   Vehicle(int _direction, int _x, int _y) {
@@ -12,63 +12,29 @@ class Vehicle {
 
   // update
   void update() {
-    switch(direction) {
-    case 0:
+      pos.add(new PVector(0, -vel));
 
 
 
-
-      break;
-
-    case 90:
-      // car driving logic
-      vel = 0.1;
-
-      // add the velocity to the position
-      pos.add(new PVector(vel, 0));
-      break;
-
-    case 180:
-
-
-
-
-      break;
-
-    case 270:
-
-
-
-
-
-      break;
-    }
   }
 
   // show the car
   void show() {
-    switch(direction) {
-    case 0:
-    
-    
-      break;
-      
-    case 90:
-    
-    
-      break;
-      
-    case 180:
-    
-    
-      break;
-      
-    case 270:
-    
-    
-      break;
-      
-    }
+    pushMatrix();
+    rotate(radians(direction));
+    rectMode(CENTER);
+    fill(#00C908);
+    noStroke();
+    rect(pos.x, pos.y, 20, 40);
+    fill(#009306);
+    rect(pos.x, pos.y + 4, 14, 20);
+    fill(0);
+    ellipse(pos.x - 2, pos.y + 6, 4, 4);
+    fill(#006400);
+    rect(pos.x, pos.y - 17, 4, 25);
+    rectMode(CORNER);
+    popMatrix();
+
   }
 }
 

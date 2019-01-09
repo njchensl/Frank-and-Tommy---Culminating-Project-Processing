@@ -1,9 +1,15 @@
 // Frank Chen and Tommy Ma
 // Traffic Intersection Simulation
 
+// deckaration
+Vehicle car1;
+Vehicle car2;
 
 void setup() {
   size(600, 600);
+  // create vihecles
+  car1 = new Vehicle(90, 18, 270);
+  car2 = new Vehicle(0, 18, 200);
 }
 
 
@@ -30,6 +36,14 @@ void draw() {
     
     drawLanes();
   }
+  
+  // update the cars
+  car1.update();
+  car2.update();
+  // draw the cars
+  car1.show();
+  car2.show();
+  
 }
 
 // draw the roads
