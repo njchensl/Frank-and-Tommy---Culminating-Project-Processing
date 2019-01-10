@@ -3,11 +3,13 @@ class Vehicle {
   int direction;
   PVector pos;
   float vel = 0.4;
+  int lane;
 
   // init
-  Vehicle(int _direction, int _x, int _y) {
+  Vehicle(int _direction, int _x, int _y, int _lane) {
     direction = _direction;
     pos = new PVector(_x, _y);
+    lane = _lane;
   }
 
   // update

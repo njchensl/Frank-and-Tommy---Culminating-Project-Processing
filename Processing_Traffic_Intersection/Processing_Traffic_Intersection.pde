@@ -4,12 +4,18 @@
 // deckaration
 Vehicle car1;
 Vehicle car2;
+TrafficLight L1, L2, L3, L4;
 
 void setup() {
   size(600, 600);
   // create vihecles
-  car1 = new Vehicle(90, 18, 270);
-  car2 = new Vehicle(0, 18, 200);
+  car1 = new Vehicle(90, 18, 270, 0);
+  car2 = new Vehicle(0, 18, 200, 0);
+  // create new traffic lights
+  L1 = new TrafficLight(0, 80, -80);
+  L2 = new TrafficLight(90, 80, -80);
+  L3 = new TrafficLight(180, 80, -80);
+  L4 = new TrafficLight(270, 80, -80);
 }
 
 
@@ -35,6 +41,8 @@ void draw() {
     drawStopLine();
     
     drawLanes();
+    
+    drawDecoration();
   }
   
   // update the cars
@@ -43,6 +51,13 @@ void draw() {
   // draw the cars
   car1.show();
   car2.show();
+  
+  
+  // draw the traffic lights
+  L1.show();
+  L2.show();
+  L3.show();
+  L4.show();
   
 }
 
@@ -97,4 +112,16 @@ void drawLanes() {
     line(175/4 - 8, i, 175/4 - 8, i + 22);
     line(-175/4 + 8, i, -175/4 + 8, i + 22);
   }
+}
+
+// decoration
+void drawDecoration() {
+  pushMatrix();
+  translate(140, 140);
+  noStroke();
+  fill(#8E5801);
+  rect(0, 0, 50, 10);
+  fill(#02AA22);
+  ellipse(60, 5, 40, 60);
+  popMatrix();
 }
