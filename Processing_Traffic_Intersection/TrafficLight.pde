@@ -3,7 +3,7 @@ class TrafficLight {
   int direction;
   PVector pos;
   int[] status = new int[2];
-  int countdown;
+  int count = 0;
   /**
    Note for direction:
    0 for up
@@ -17,8 +17,8 @@ class TrafficLight {
    note:
    status value and light
    0: red
-   1: yellow
-   2: green
+   1: green
+   2: yellow
    3: reserved for future use (potentially advanced green)
    **/
 
@@ -27,13 +27,35 @@ class TrafficLight {
   TrafficLight(int _direction, int _x, int _y) {
     direction = _direction;
     pos = new PVector(_x, _y);
-    status[0] = 2;
-    status[1] = 1;
+    //status[0] = 2;
+    //status[1] = 1;
   }
 
   // update the lights
   void update() {
-    // based on timing
+    // check the direction
+    if (direction == 0 || direction == 180) {
+      // based on timing
+      for (int i = 0; i < 2; i++) {
+        if (millis() / 1000 % 22 == 0) {
+          status[i]= 0;
+        } else if (millis() / 1000 % 22 == 11) {
+          status[i]= 1;
+        } else if (millis() / 1000 % 22 == 17) {
+          status[i]= 2;
+        }
+      }
+    } else {
+      for (int i = 0; i < 2; i++) {
+        if (millis() / 1000 % 22 == 10) {
+          status[i]= 0;
+        } else if (millis() / 1000 % 22 == 1) {
+          status[i]= 1;
+        } else if (millis() / 1000 % 22 == 7) {
+          status[i]= 2;
+        }
+      }
+    }
   }
 
 
@@ -53,10 +75,10 @@ class TrafficLight {
       fill(#FF0000);
       break;
     case 1:
-      fill(#FFFF00);
+      fill(#00FF00);
       break;
     case 2:
-      fill(#00FF00);
+      fill(#FFFF00);
       break;
     }
     ellipse(-60, -32, 7, 7);
@@ -65,10 +87,10 @@ class TrafficLight {
       fill(#FF0000);
       break;
     case 1:
-      fill(#FFFF00);
+      fill(#00FF00);
       break;
     case 2:
-      fill(#00FF00);
+      fill(#FFFF00);
       break;
     }
     ellipse(-27, -32, 7, 7);

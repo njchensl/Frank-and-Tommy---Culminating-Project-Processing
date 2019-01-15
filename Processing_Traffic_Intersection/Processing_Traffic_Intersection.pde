@@ -2,8 +2,7 @@
 // Traffic Intersection Simulation
 
 // deckaration
-Vehicle car1;
-Vehicle car2;
+Vehicle car1, car2, car3, car4;
 TrafficLight L1, L2, L3, L4;
 
 void setup() {
@@ -11,6 +10,8 @@ void setup() {
   // create vihecles
   car1 = new Vehicle(90, 18, 270, 0);
   car2 = new Vehicle(0, 18, 200, 0);
+  car3 = new Vehicle(180, 50, 130, 1);
+  car4 = new Vehicle(270, 50, 130, 1);
   // create new traffic lights
   L1 = new TrafficLight(0, 80, -80);
   L2 = new TrafficLight(90, 80, -80);
@@ -48,12 +49,20 @@ void draw() {
   // update the cars
   car1.update();
   car2.update();
+  car3.update();
+  car4.update();
   // draw the cars
   car1.show();
   car2.show();
+  car3.show();
+  car4.show();
   
   
   // draw the traffic lights
+  L1.update();
+  L2.update();
+  L3.update();
+  L4.update();
   L1.show();
   L2.show();
   L3.show();

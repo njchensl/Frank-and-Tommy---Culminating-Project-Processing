@@ -2,7 +2,7 @@ class Vehicle {
   // declaration
   int direction;
   PVector pos;
-  float vel = 0.4;
+  float vel = 0.7;
   int lane;
 
   // init
@@ -14,11 +14,44 @@ class Vehicle {
 
   // update
   void update() {
-      pos.add(new PVector(0, -vel));
-
-
-
+    // check traffic light
+    switch(direction) {
+    case 0:
+      if (L1.status[lane] == 0 && pos.y > 100 && pos.y < 120) {
+        vel = 0;
+      } else {
+        vel = 0.7;
+      }
+      break;
+    case 90:
+      if (L2.status[lane] == 0 && pos.y > 100 && pos.y < 120) {
+        vel = 0;
+      } else {
+        vel = 0.7;
+      }
+      break;
+    case 180:
+      if (L3.status[lane] == 0 && pos.y > 100 && pos.y < 120) {
+        vel = 0;
+      } else {
+        vel = 0.7;
+      }
+      break;
+    case 270:
+      if (L4.status[lane] == 0 && pos.y > 100 && pos.y < 120) {
+        vel = 0;
+      } else {
+        vel = 0.7;
+      }
+      break;
+    }
+    pos.add(new PVector(0, -vel));
+    if (pos.y < -400) {
+      pos.y = 350;
+    }
   }
+
+
 
   // show the car
   void show() {
@@ -36,7 +69,6 @@ class Vehicle {
     rect(pos.x, pos.y - 17, 4, 25);
     rectMode(CORNER);
     popMatrix();
-
   }
 }
 
