@@ -4,12 +4,13 @@
 // deckaration
 Vehicle car1, car2, car3, car4;
 TrafficLight L1, L2, L3, L4;
+Pedestrian P1;
 
 void setup() {
   size(600, 600);
   // create vihecles
   car1 = new Vehicle(90, 18, 270, 0);
-  car2 = new Vehicle(0, 18, 200, 0);
+  car2 = new Vehicle(0, 50, 200, 1);
   car3 = new Vehicle(180, 50, 130, 1);
   car4 = new Vehicle(270, 50, 130, 1);
   // create new traffic lights
@@ -17,6 +18,8 @@ void setup() {
   L2 = new TrafficLight(90, 80, -80);
   L3 = new TrafficLight(180, 80, -80);
   L4 = new TrafficLight(270, 80, -80);
+  // create pedestrians
+  P1 = new Pedestrian(0, 77, 270);
 }
 
 
@@ -36,28 +39,44 @@ void draw() {
     drawSidewalks();
 
     drawCrosswalks();
-    
+
     drawCenterline();
-    
+
     drawStopLine();
-    
+
     drawLanes();
-    
+
     drawDecoration();
   }
-  
+
   // update the cars
   car1.update();
   car2.update();
   car3.update();
   car4.update();
+  // car turning
+  // turn right
+  if (car2.lane == 1 && car2.direction == 0) {
+    if (car2.pos.y < 50) {
+      car2.direction += 90;
+      car2.pos.y -= 90;
+    }
+  }
+
+
   // draw the cars
   car1.show();
   car2.show();
   car3.show();
   car4.show();
   
+  // update the pedestrians
+  P1.update();
   
+  // draw the pedestrians
+  P1.show();
+
+
   // draw the traffic lights
   L1.update();
   L2.update();
@@ -67,7 +86,6 @@ void draw() {
   L2.show();
   L3.show();
   L4.show();
-  
 }
 
 // draw the roads
@@ -117,7 +135,7 @@ void drawStopLine() {
 
 // draw the lanes
 void drawLanes() {
-  for (int i = -300;  i < - 175/2; i+= 45) {
+  for (int i = -300; i < - 175/2; i+= 45) {
     line(175/4 - 8, i, 175/4 - 8, i + 22);
     line(-175/4 + 8, i, -175/4 + 8, i + 22);
   }
@@ -134,3 +152,4 @@ void drawDecoration() {
   ellipse(60, 5, 40, 60);
   popMatrix();
 }
+
