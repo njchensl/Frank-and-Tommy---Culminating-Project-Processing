@@ -1,30 +1,7 @@
-class TrafficLight {
-  // declaration
-  int direction;
-  PVector pos;
-  int[] status = new int[2];
-  int count = 0;
-  /**
-   Note for direction:
-   0 for up
-   90 for right
-   180 for down
-   270 for left
-   **/
-
-
-  /**
-   note:
-   status value and light
-   0: red
-   1: green
-   2: yellow
-   3: reserved for future use (potentially advanced green)
-   **/
-
-
+class TrafficLightAdvanced extends TrafficLight {
   // init
-  TrafficLight(int _direction, int _x, int _y) {
+  TrafficLightAdvanced(int _direction, int _x, int _y) {
+    super(_direction, _x, _y);
     direction = _direction;
     pos = new PVector(_x, _y);
   }
@@ -78,6 +55,12 @@ class TrafficLight {
     case 2:
       fill(#FFFF00);
       break;
+    case 3:
+      if (millis() / 300 % 2 == 0) {
+        fill(0);
+      } else {
+        fill(#00FF00);
+      }
     }
     ellipse(-60, -32, 7, 7);
     switch(status[1]) {
@@ -90,6 +73,8 @@ class TrafficLight {
     case 2:
       fill(#FFFF00);
       break;
+    case 3:
+      fill(#00FF00);
     }
     ellipse(-27, -32, 7, 7);
     popMatrix();
