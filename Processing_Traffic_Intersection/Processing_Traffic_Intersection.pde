@@ -6,6 +6,8 @@ Vehicle car1, car2, car3, car4;
 TrafficLight L1, L3, L4;
 TrafficLightAdvanced L2;
 Pedestrian P1;
+int timing, additionalTime;
+boolean walkButton = false;
 
 void setup() {
   size(600, 600);
@@ -21,6 +23,8 @@ void setup() {
   L4 = new TrafficLight(270, 80, -80);
   // create pedestrians
   P1 = new Pedestrian(0, 77, 270);
+  
+  noCursor();
 }
 
 
@@ -29,6 +33,8 @@ void draw() {
   translate(300, 300);
   // background green
   background(#00D63E);
+  // timing
+  timing = millis() + additionalTime;
 
   // draw roads
   drawRoads();
@@ -89,6 +95,13 @@ void draw() {
   L2.show();
   L3.show();
   L4.show();
+
+
+  // pedestrian lights
+  pedLight();
+  
+  // custom cursor
+  drawCursor();
 }
 
 // draw the roads
@@ -156,3 +169,52 @@ void drawDecoration() {
   popMatrix();
 }
 
+// pedestrian lights
+void pedLight() {
+  // pedestrian lights
+  fill(255);
+  stroke(0);
+  strokeWeight(1);
+  // button
+  rect(90, 90, 20, 20);
+  if (walkButton) {
+    fill(#FF0000);
+  } else {
+    fill(0);
+  }
+  ellipse(101, 100, 16, 16);
+  // walk signal
+  if (L1.status[0] == 1) {
+    fill(#00FF00);
+    // when the light is green, inhibit the button
+    walkButton = false;
+  } else {
+    fill(#FF0000);
+  }
+  rect(90, -90, 20, -20);
+}
+
+// cursor
+void drawCursor() {
+  noFill();
+  stroke(#C400AD);
+  translate(-300, -300);
+  ellipse(mouseX, mouseY, 10, 10);
+  line(mouseX - 5, mouseY, mouseX - 20, mouseY);
+  line(mouseX + 5, mouseY, mouseX + 20, mouseY);
+  line(mouseX, mouseY - 5, mouseX, mouseY - 20);
+  line(mouseX, mouseY + 5, mouseX, mouseY + 20);
+}
+
+// mouse pressed
+void mousePressed() {
+  // if in the button area
+  if (dist(400, 400, mouseX, mouseY) < 9) {
+    // check the status of the lights
+    if (L1.status[0] == 0 && !walkButton) {
+      // advance the time by 2 seconds
+      additionalTime += 2000;
+      walkButton = true;
+    }
+  }
+}

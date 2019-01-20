@@ -12,25 +12,25 @@ class TrafficLightAdvanced extends TrafficLight {
     if (direction == 0 || direction == 180) {
       // based on timing
       for (int i = 0; i < 2; i++) {
-        if (millis() / 1000 % 22 == 0) {
+        if (timing / 1000 % 22 == 0) {
           status[i]= 0;
-        } else if (millis() / 1000 % 22 == 11) {
+        } else if (timing / 1000 % 22 == 11) {
           status[i]= 1;
-        } else if (millis() / 1000 % 22 == 14) {
+        } else if (timing / 1000 % 22 == 14) {
           status[i]= 3;
-        } else if (millis() / 1000 % 22 == 17) {
+        } else if (timing / 1000 % 22 == 17) {
           status[i]= 2;
         }
       }
     } else {
       for (int i = 0; i < 2; i++) {
-        if (millis() / 1000 % 22 == 10) {
+        if (timing / 1000 % 22 == 10) {
           status[i]= 0;
-        } else if (millis() / 1000 % 22 == 1) {
+        } else if (timing / 1000 % 22 == 1) {
           status[i]= 1;
-        } else if (millis() / 1000 % 22 == 4) {
+        } else if (timing / 1000 % 22 == 4) {
           status[i]= 3;
-        } else if (millis() / 1000 % 22 == 7) {
+        } else if (timing / 1000 % 22 == 7) {
           status[i]= 2;
         }
       }
@@ -60,7 +60,7 @@ class TrafficLightAdvanced extends TrafficLight {
       fill(#FFFF00);
       break;
     case 3:
-      if (millis() / 300 % 2 == 0) {
+      if (timing / 300 % 2 == 0) {
         fill(0);
       } else {
         fill(#00FF00);
