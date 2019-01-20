@@ -5,7 +5,7 @@ class Vehicle1 extends Vehicle {
     direction = _direction;
     pos = new PVector(_x, _y);
     lane = _lane;
-    defaultVel = random(0.7, 1.5);
+    defaultVel = random(1, 1.5);
   }
 
   // show the car

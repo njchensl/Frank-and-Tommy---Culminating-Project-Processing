@@ -11,7 +11,7 @@ class Vehicle {
     direction = _direction;
     pos = new PVector(_x, _y);
     lane = _lane;
-    defaultVel = random(0.7, 1.5);
+    defaultVel = random(1, 1.5);
   }
 
   // update
@@ -21,16 +21,17 @@ class Vehicle {
     case 0:
       if (L1.status[lane] == 0 && pos.y > 100 && pos.y < 120) {
         vel = 0;
+      } else  if (L1.status[lane] == 2 && pos.y > -70 && pos.y < 220) {
+        vel = defaultVel * 2;
       } else {
         vel = defaultVel;
       }
-
-
-
       break;
     case 90:
       if (L2.status[lane] == 0 && pos.y > 100 && pos.y < 120) {
         vel = 0;
+      } else  if (L2.status[lane] == 2 && pos.y > -70 && pos.y < 220) {
+        vel = defaultVel * 2;
       } else {
         vel = defaultVel;
       }
@@ -38,6 +39,8 @@ class Vehicle {
     case 180:
       if (L3.status[lane] == 0 && pos.y > 100 && pos.y < 120) {
         vel = 0;
+      } else  if (L3.status[lane] == 2 && pos.y > -70 && pos.y < 220) {
+        vel = defaultVel * 2;
       } else {
         vel = defaultVel;
       }
@@ -45,6 +48,8 @@ class Vehicle {
     case 270:
       if (L4.status[lane] == 0 && pos.y > 100 && pos.y < 120) {
         vel = 0;
+      } else  if (L4.status[lane] == 2 && pos.y > -70 && pos.y < 220) {
+        vel = defaultVel * 2;
       } else {
         vel = defaultVel;
       }

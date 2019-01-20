@@ -3,22 +3,22 @@
 
 // deckaration
 Vehicle car1, car2, car3, car4;
-TrafficLight L1, L2, L3;
-TrafficLightAdvanced L4;
+TrafficLight L1, L3, L4;
+TrafficLightAdvanced L2;
 Pedestrian P1;
 
 void setup() {
   size(600, 600);
   // create vihecles
-  car1 = new Vehicle1(90, 18, 270, 0);
+  car1 = new Vehicle1(90, 18, 500, 0);
   car2 = new Vehicle1(0, 50, 200, 1);
   car3 = new Vehicle(180, 50, 130, 1);
   car4 = new Vehicle(270, 50, 130, 1);
   // create new traffic lights
   L1 = new TrafficLight(0, 80, -80);
-  L2 = new TrafficLight(90, 80, -80);
+  L2 = new TrafficLightAdvanced(90, 80, -80);
   L3 = new TrafficLight(180, 80, -80);
-  L4 = new TrafficLightAdvanced(270, 80, -80);
+  L4 = new TrafficLight(270, 80, -80);
   // create pedestrians
   P1 = new Pedestrian(0, 77, 270);
 }
@@ -57,23 +57,25 @@ void draw() {
   car4.update();
   // car turning
   // turn right
-  if (car2.lane == 1 && car2.direction == 0) {
-    if (car2.pos.y < 50) {
-      car2.direction += 90;
-      car2.pos.y -= 90;
-    }
+  if (car2.lane == 1 && car2.direction == 0 && car2.pos.y < 50) {
+    car2.direction += 90;
+    car2.pos.y -= 90;
   }
-
+  // turn left
+  if (car1.lane == 0 && car1.direction == 90 && car1.pos.y < 0) {
+    car1.direction -= 90;
+    car1.pos.y += 20;
+  }
 
   // draw the cars
   car1.show();
   car2.show();
   car3.show();
   car4.show();
-  
+
   // update the pedestrians
   P1.update();
-  
+
   // draw the pedestrians
   P1.show();
 

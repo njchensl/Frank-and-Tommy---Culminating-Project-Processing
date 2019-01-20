@@ -16,6 +16,8 @@ class TrafficLightAdvanced extends TrafficLight {
           status[i]= 0;
         } else if (millis() / 1000 % 22 == 11) {
           status[i]= 1;
+        } else if (millis() / 1000 % 22 == 14) {
+          status[i]= 3;
         } else if (millis() / 1000 % 22 == 17) {
           status[i]= 2;
         }
@@ -26,6 +28,8 @@ class TrafficLightAdvanced extends TrafficLight {
           status[i]= 0;
         } else if (millis() / 1000 % 22 == 1) {
           status[i]= 1;
+        } else if (millis() / 1000 % 22 == 4) {
+          status[i]= 3;
         } else if (millis() / 1000 % 22 == 7) {
           status[i]= 2;
         }
